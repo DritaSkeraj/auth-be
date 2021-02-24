@@ -13,17 +13,16 @@ const RefreshToken = async(payload) => {
 }
 
 const verifyAccessToken = async(token) => {
-    const payload = await jwt.verify(JWT_ACCESS_SECRET);
+    const payload = await jwt.verify(token, JWT_ACCESS_SECRET);
     return payload
 }
 
 const verifyRefreshToken = async(token) => {
-    const payload = await jwt.verify(JWT_REFRESH_SECRET);
+    const payload = await jwt.verify(token, JWT_REFRESH_SECRET);
     return payload
 }
 
 const TokenPairs = async(payload) => {
-    console.log('payload: ', payload)
     const accessToken = await AccessToken(payload);
     const refreshToken = await RefreshToken(payload);
     return {accessToken, refreshToken}
