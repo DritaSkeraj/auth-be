@@ -6,11 +6,13 @@ const checkBearerToken = async(req, res, next) => {
     if(req.headers.authorization){
         
         const [method, jwt] = req.headers.authorization.split(" ")
+        //console.log("jwt: ", jwt);
 
         if(method === "Bearer" && jwt){
             try{
                 const {_id} = await verifyAccessToken(jwt);
                 const user = await Users.findById(_id)
+                console.log("user: ", user)
                 if(user){
                     req.user = user;
                     next();

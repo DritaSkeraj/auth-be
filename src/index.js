@@ -2,6 +2,8 @@ const express = require("express")
 
 const mongoose = require("mongoose")
 
+const listEndpoints = require("express-list-endpoints");
+
 const services = require("./services")
 
 const app = express()
@@ -34,6 +36,8 @@ app.use(express.json())
 //app.use(passport.initialize())
 
 app.use("/api",services)
+
+console.log(listEndpoints(app))
 
 // deployed to atlas
 const {MONGO_CONNECTION_STRING,PORT} = process.env

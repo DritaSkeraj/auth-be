@@ -18,8 +18,10 @@ router.get("/", async(req, res, next) => {
 router.get("/me", checkBearerToken, async(req, res, next) => {
     try{
         res.send(req.user.toJSON()) //toJson since its a model
+        console.log('hereeeeeeee')
     } catch(err){
         res.send(err.message).status(500)
+        console.log('shiiiiiiiiiit')
     }
 })
 
